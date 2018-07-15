@@ -1,0 +1,30 @@
+{
+  "name": "passcryptor_js",
+  "version": "1.0.0",
+  "description": "Standalone password generator",
+  "main": "index.js",
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.16.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/charlessamdilip/passcryptor_js.git"
+  },
+  "keywords": [
+    "Password",
+    "encrryption"
+  ],
+  "author": "Charles Sam Dilip J",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charlessamdilip/passcryptor_js/issues"
+  },
+  "homepage": "https://github.com/charlessamdilip/passcryptor_js#readme"
+}
