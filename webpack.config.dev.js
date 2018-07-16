@@ -1,4 +1,6 @@
 const path = require('path');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'js', 'index.js'),
@@ -8,16 +10,12 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    publicPath: path.resolve(__dirname, 'dist'),
+    publicPath: path.resolve(__dirname, '/'),
     filename: 'passcryptor.bundle.js'
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'dist'),
-    inline: true,
     port: 3000,
-    watchOptions: {
-      ignored: /node_modules/
-    },
   },
   module: {
     rules: [
@@ -31,4 +29,10 @@ module.exports = {
       }
     ]
   },
+  plugins: [new cleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
+    new htmlWebpackPlugin({
+      template: path.resolve(__dirname, 'src', 'html', 'index.html')
+    })
+  ]
+
 }
