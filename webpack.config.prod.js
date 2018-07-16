@@ -1,4 +1,5 @@
 const path = require('path');
+const cleanWebpackPlugin = require('clean-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
 const indexHtmlCopyConf = {
   from: path.resolve(__dirname, 'src', 'html', 'index.html'),
@@ -25,5 +26,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [new copyWebpackPlugin([indexHtmlCopyConf])]
+  plugins: [new cleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
+    new copyWebpackPlugin([indexHtmlCopyConf])
+  ]
 }
