@@ -345,8 +345,9 @@ Temporary Items
 # End of https://www.gitignore.io/api/node,reactnative,intellij+iml
 
 ### Custom ##############
-package-lock.json
 node_modules/*
 .idea/misc.xml
 .idea/workspace.xml
 .idea/vcs.xml
+.idea/codeStyles/codeStyleConfig.xml
+dist/*
