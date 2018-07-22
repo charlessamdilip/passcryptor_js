@@ -1,10 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class App extends React.Component {
-  render () {
-    return <p> Hello S!</p>;
-  }
-}
+import Layout from './components/layout';
 
-ReactDOM.render(<App/>, document.getElementById('passcryptor_app'));
+ReactDOM.render(<Layout/>, document.getElementById('passcryptor_app'));
