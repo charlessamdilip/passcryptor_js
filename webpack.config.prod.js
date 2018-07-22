@@ -21,8 +21,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
-          presets: ["react"]
+          presets: ["react"],
+          plugins: [ "transform-class-properties" ]
         }
+      },
+      {
+        test: /\.less$/,
+        loader: 'less-loader' // compiles Less to CSS
       }
     ]
   },
