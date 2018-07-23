@@ -41,7 +41,7 @@ class SliderWithLabelsAndRadioBox extends React.Component {
     let radioBoxSet;
     const radioOptions = this.props.radioOptions;
     if (radioOptions && Array.isArray(radioOptions) && radioOptions.length > 1) {
-      radioBoxSet = <RadioGroup className="input_radio_group with_label" value={this.state.radioValue} onChange={this.handleRadioValueChange}>{radioOptions.map((value) => {return <FormControlLabel key={value.toString()} value={value} control={<Radio className="input_check"/>} label={value} />})}</RadioGroup>
+      radioBoxSet = <RadioGroup className="input_radio_group with_label" value={this.state.radioValue} onChange={this.handleRadioValueChange}>{radioOptions.map((value) => {return <FormControlLabel classes={{root:'input_label'}} key={value.toString()} value={value} control={<Radio classes={{root:"input_radio"}}/>} label={value} />})}</RadioGroup>
     }
 
     return( <div>
