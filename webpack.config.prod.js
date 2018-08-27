@@ -5,7 +5,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const indexHtmlCopyConf = {
   from: path.resolve(__dirname, 'src', 'html', 'index.html'),
-  to: path.resolve(__dirname, 'dist')
+  to: path.resolve(__dirname)
 };
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
   mode: 'development',
   watch: false,
   output: {
-    path: path.resolve(__dirname, 'dist', 'js'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'passcryptor.js'
   },
   module: {
