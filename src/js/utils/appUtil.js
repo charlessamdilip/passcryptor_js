@@ -65,15 +65,28 @@ export function isValidSlideMovement(sliderName, value, valueIncluded) {
  * @returns a String of password.
  */
 export function generatePassword(selectedConfParam) {
-  const selectedConf = selectedConfParam ? selectedConfParam : getSelectedConf();
-  let passLength = selectedConf.passLength;
-  let alphaLength = selectedConf.alphaLength;
-  let numberLength = selectedConf.numberLength;
-  let specialCharLength = selectedConf.specialCharLength;
-  let alphaType = alphaTypeEnum[selectedConf.alphaType];
+  let passLength;
+  let alphaLength;
+  let numberLength;
+  let specialCharLength;
+  let alphaType;
+  if (!selectedConfParam) {
+    const selectedConf = getSelectedConf();
+    passLength = selectedConf.passLength;
+    alphaLength = selectedConf.alphaLength;
+    numberLength = selectedConf.numberLength;
+    specialCharLength = selectedConf.specialCharLength;
+    alphaType = alphaTypeEnum[selectedConf.alphaType];
+  } else {
+    const selectedConf = selectedConfParam;
+    passLength = selectedConf.passLength;
+    alphaLength = selectedConf.alphaLength;
+    numberLength = !selectedConf.numberSelected ? 0 : selectedConf.numberLength;
+    specialCharLength = !selectedConf.specialCharSelected ? 0 : selectedConf.specialCharLength;
+    alphaType = alphaTypeEnum[selectedConf.alphaType];
+  }
 
   let passwordCharTypes = [];
-
   for (let i = 0; i < alphaLength; ++i) {
     if (alphaType === alphaTypeEnum['small']) { // Only small case
       passwordCharTypes.push(charTypeEnum.ALPHALOWER);
