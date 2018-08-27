@@ -351,3 +351,4 @@ node_modules/*
 .idea/vcs.xml
 .idea/codeStyles/codeStyleConfig.xml
 dist/*
+.idea/*

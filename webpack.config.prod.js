@@ -1,6 +1,8 @@
 const path = require('path');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
 const copyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
 const indexHtmlCopyConf = {
   from: path.resolve(__dirname, 'src', 'html', 'index.html'),
   to: path.resolve(__dirname, 'dist')
@@ -39,6 +41,9 @@ module.exports = {
     ]
   },
   plugins: [new cleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
-    new copyWebpackPlugin([indexHtmlCopyConf])
+    new copyWebpackPlugin([indexHtmlCopyConf]),
+    new UglifyJsPlugin({
+      test: /\.js($|\?)/i
+    })
   ]
 }
