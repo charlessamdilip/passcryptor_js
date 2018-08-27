@@ -41,7 +41,7 @@ class SliderWithLabelsAndCheckBox extends SliderWithLabel {
     });
 
     setValue(this.props.name + "Length", value);
-    if (!this.state.checked) {
+    if (this.state.checked) {
       this.props.generatePasswordHandler(event, value);
     }
   };
