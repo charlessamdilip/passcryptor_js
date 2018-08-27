@@ -8,6 +8,8 @@ import Slider from '@material-ui/lab/Slider';
 import style from '../../../style/slider.less';
 import labelStyle from '../../../style/label.less';
 import inputStyle from '../../../style/input.less';
+import {isValidSlideMovement} from "../../utils/appUtil";
+import {setValue} from "../../utils/localStorageHandler";
 
 class SliderWithLabelsAndCheckBox extends SliderWithLabel {
   constructor(props) {
@@ -17,9 +19,31 @@ class SliderWithLabelsAndCheckBox extends SliderWithLabel {
   };
 
   handlerCheckBoxChange = (event, checked) => {
+    if (checked && !isValidSlideMovement(this.props.name, this.state.value, checked)) {
+      this.props.sliderInconsistencyHandler();
+      return;
+    }
     this.setState({
       checked: checked,
     });
+    setValue(this.props.name + "Selected", checked);
+    this.props.generatePasswordHandler(event, this.state.value);
+  };
+
+  handleSliderValueChange = (event, value) => {
+    if (this.state.checked && !isValidSlideMovement(this.props.name, value, this.state.checked)) {
+      this.props.sliderInconsistencyHandler();
+      return;
+    }
+
+    this.setState({
+      value: value
+    });
+
+    setValue(this.props.name + "Length", value);
+    if (!this.state.checked) {
+      this.props.generatePasswordHandler(event, value);
+    }
   };
 
   render() {

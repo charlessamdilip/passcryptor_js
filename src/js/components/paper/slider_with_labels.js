@@ -1,15 +1,15 @@
 import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import Checkbox from '@material-ui/core/Checkbox';
 import Slider from '@material-ui/lab/Slider';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+
+import {isValidSlideMovement} from "../../utils/appUtil";
+import {setValue} from "../../utils/localStorageHandler";
 
 import style from '../../../style/slider.less';
 import labelStyle from '../../../style/label.less';
 import inputStyle from '../../../style/input.less';
+
 
 class SliderWithLabels extends React.Component {
   constructor(props) {
@@ -22,9 +22,17 @@ class SliderWithLabels extends React.Component {
   };
 
   handleSliderValueChange = (event, value) => {
+    if (!isValidSlideMovement(this.props.name, value, true)) {
+      this.props.sliderInconsistencyHandler();
+      return;
+    }
+
     this.setState({
       value: value
     });
+
+    setValue(this.props.name + "Length", value);
+    this.props.generatePasswordHandler(event, value);
   };
 
   render() {

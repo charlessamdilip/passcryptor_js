@@ -7,7 +7,7 @@ class AppLayout extends React.Component {
   render() {
     return(
         <Grid container alignItems="center" justify="center">
-            <AppPaper></AppPaper>
+            <AppPaper sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}></AppPaper>
         </Grid>
     );
   }

@@ -5,7 +5,7 @@ const EMPTY_OBJECT = '{}';
  * Checks the pre existance of the state in localstorage.
  */
 export function checkConfExists() {
-  null === localStorage.getItem(PASSCRYPTOR_STATE) ? false : true;
+  return null === localStorage.getItem(PASSCRYPTOR_STATE) ? false : true;
 }
 
 /**

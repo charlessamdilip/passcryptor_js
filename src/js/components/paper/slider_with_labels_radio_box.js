@@ -10,6 +10,7 @@ import SliderWithLabel from  './slider_with_labels';
 import style from '../../../style/slider.less';
 import labelStyle from '../../../style/label.less';
 import inputStyle from '../../../style/input.less';
+import {setValue} from "../../utils/localStorageHandler";
 
 class SliderWithLabelsAndRadioBox extends SliderWithLabel {
   constructor(props) {
@@ -24,6 +25,8 @@ class SliderWithLabelsAndRadioBox extends SliderWithLabel {
     this.setState({
       radioValue: radioValue
     });
+    setValue("alphaType", radioValue);
+    this.props.generatePasswordHandler(event, this.state.value);
   };
 
   render() {

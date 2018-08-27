@@ -6,13 +6,30 @@ import SliderWithLabelsAndRadioBox from './paper/slider_with_labels_radio_box';
 import SliderWithLabelsAndCheckBox from './paper/slider_with_labels_check_box';
 import TypographyWithAction from './paper/typograpthy_with_action';
 
-import {checkConfExists, setState, getState} from "../utils/localStorageHandler";
+import {
+  checkConfExists,
+  setState,
+  getState,
+  setValue
+} from '../utils/localStorageHandler';
+import {generatePassword} from '../utils/appUtil';
 
 import style from '../../style/paper.less';
 
 class AppPaper extends React.Component {
   constructor() {
     super();
+    let currentState;
+    if (!checkConfExists()) {
+      currentState = this.getDefaultAppState();
+      setState(currentState);
+    } else {
+      currentState = getState();
+    }
+    this.state = {
+      password: generatePassword(currentState),
+      currentState: currentState
+    };
   }
 
   getDefaultAppState() {
@@ -41,21 +58,26 @@ class AppPaper extends React.Component {
     ];
   }
 
+  updatePassword = (password) => {
+    setValue("password", password);
+    this.setState({
+      password: password
+    });
+  }
+
+  generatePasswordHandler = (event, value) => {
+    this.updatePassword(generatePassword());
+  }
+
   render() {
-    let currentState;
-    if (!checkConfExists()) {
-      currentState = this.getDefaultAppState();
-      setState(currentState);
-    } else {
-      currentState = getState();
-    }
+    const currentState = this.state.currentState;
     return (
         <Paper className="paper">
-          <TypographyWithAction></TypographyWithAction>
-          <SliderWithLabels label="Length:" id="passlength" value={currentState.passLength} min={currentState.minPassLength} max={currentState.maxPassLength}/>
-          <SliderWithLabelsAndRadioBox label="Alpha:" id="minalpha" radioOptions={this.getRadioOptions()} value={currentState.alphaLength} min={currentState.minAlphaLength} max={currentState.maxAlphaLength}/>
-          <SliderWithLabelsAndCheckBox label="Numberals:" id="minnumeric" checkBox={true} value={currentState.numberLength} min={currentState.minNumberLength} max={currentState.maxNumberLength} disabled={!currentState.numberSelected}/>
-          <SliderWithLabelsAndCheckBox label="SpecialCharacters:" id="minspecial" checkBox={true} value={currentState.specialCharLength} min={currentState.minSpecialCharLength} max={currentState.maxSpecialCharLength} disabled={!currentState.specialCharSelected}/>
+          <TypographyWithAction password={this.state.password} generatePasswordHandler={this.generatePasswordHandler}></TypographyWithAction>
+          <SliderWithLabels name="pass" label="Length:" id="passlength" value={currentState.passLength} min={currentState.minPassLength} max={currentState.maxPassLength} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
+          <SliderWithLabelsAndRadioBox name="alpha" label="Alpha:" id="minalpha" radioOptions={this.getRadioOptions()} value={currentState.alphaLength} min={currentState.minAlphaLength} max={currentState.maxAlphaLength} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
+          <SliderWithLabelsAndCheckBox name="number" label="Numberals:" id="minnumeric" checkBox={true} value={currentState.numberLength} min={currentState.minNumberLength} max={currentState.maxNumberLength} disabled={!currentState.numberSelected} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
+          <SliderWithLabelsAndCheckBox name="specialChar" label="SpecialCharacters:" id="minspecial" checkBox={true} value={currentState.specialCharLength} min={currentState.minSpecialCharLength} max={currentState.maxSpecialCharLength} disabled={!currentState.specialCharSelected} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
         </Paper>
     )
   }
