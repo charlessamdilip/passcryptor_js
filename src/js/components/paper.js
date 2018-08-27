@@ -59,7 +59,6 @@ class AppPaper extends React.Component {
   }
 
   updatePassword = (password) => {
-    setValue("password", password);
     this.setState({
       password: password
     });
@@ -75,7 +74,7 @@ class AppPaper extends React.Component {
         <Paper className="paper">
           <TypographyWithAction password={this.state.password} generatePasswordHandler={this.generatePasswordHandler}></TypographyWithAction>
           <SliderWithLabels name="pass" label="Length:" id="passlength" value={currentState.passLength} min={currentState.minPassLength} max={currentState.maxPassLength} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
-          <SliderWithLabelsAndRadioBox name="alpha" label="Alpha:" id="minalpha" radioOptions={this.getRadioOptions()} value={currentState.alphaLength} min={currentState.minAlphaLength} max={currentState.maxAlphaLength} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
+          <SliderWithLabelsAndRadioBox name="alpha" label="Alpha:" id="minalpha" radioOptions={this.getRadioOptions()} radioSelected={currentState.alphaType} value={currentState.alphaLength} min={currentState.minAlphaLength} max={currentState.maxAlphaLength} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
           <SliderWithLabelsAndCheckBox name="number" label="Numberals:" id="minnumeric" checkBox={true} value={currentState.numberLength} min={currentState.minNumberLength} max={currentState.maxNumberLength} disabled={!currentState.numberSelected} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
           <SliderWithLabelsAndCheckBox name="specialChar" label="SpecialCharacters:" id="minspecial" checkBox={true} value={currentState.specialCharLength} min={currentState.minSpecialCharLength} max={currentState.maxSpecialCharLength} disabled={!currentState.specialCharSelected} generatePasswordHandler={this.generatePasswordHandler} sliderInconsistencyHandler={this.props.sliderInconsistencyHandler}/>
         </Paper>

@@ -15,7 +15,7 @@ class SliderWithLabelsAndCheckBox extends SliderWithLabel {
   constructor(props) {
     super(props);
     const radioOptions = this.props.radioOptions;
-    this.state.checked = false;
+    this.state.checked = !this.props.disabled;
   };
 
   handlerCheckBoxChange = (event, checked) => {
@@ -51,7 +51,7 @@ class SliderWithLabelsAndCheckBox extends SliderWithLabel {
     const sliderMax = this.props.max;
     const sliderMin = this.props.min;
     const labelId = "__label_" + this.props.id;
-    const labelDisaled = this.state.checked ? "": " disabled";
+    const labelDisaled = this.state.checked ? "" : " disabled";
     let classObj;
     if (this.state.checked) {
       classObj = {
