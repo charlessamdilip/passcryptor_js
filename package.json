@@ -29,8 +29,8 @@
     "webpack-dev-server": "^3.1.6"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.prod.js",
-    "start": "webpack-dev-server --config webpack.config.dev.js",
+    "start": "webpack --config webpack.config.prod.js",
+    "serv_start": "webpack-dev-server --config webpack.config.dev.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
