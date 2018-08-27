@@ -7,6 +7,10 @@ const indexHtmlCopyConf = {
   from: path.resolve(__dirname, 'src', 'html', 'index.html'),
   to: path.resolve(__dirname, 'dist')
 };
+const faviconCopyConf = {
+  from: path.resolve(__dirname, 'src', 'assets', 'favicon.ico'),
+  to: path.resolve(__dirname, 'dist', 'assets')
+};
 
 module.exports = {
   entry: path.resolve(__dirname, 'src', 'js', 'index.js'),
@@ -41,7 +45,7 @@ module.exports = {
     ]
   },
   plugins: [new cleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
-    new copyWebpackPlugin([indexHtmlCopyConf]),
+    new copyWebpackPlugin([indexHtmlCopyConf, faviconCopyConf]),
     new UglifyJsPlugin({
       test: /\.js($|\?)/i
     })
