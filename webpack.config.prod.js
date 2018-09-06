@@ -20,6 +20,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist', 'js'),
     filename: 'passcryptor.js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -46,8 +47,5 @@ module.exports = {
   },
   plugins: [new cleanWebpackPlugin([path.resolve(__dirname, 'dist')]),
     new copyWebpackPlugin([indexHtmlCopyConf, faviconCopyConf]),
-    new UglifyJsPlugin({
-      test: /\.js($|\?)/i
-    })
   ]
 }
